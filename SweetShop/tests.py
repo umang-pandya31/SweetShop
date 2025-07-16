@@ -1,4 +1,5 @@
 from django.test import TestCase
+from django.urls import reverse
 from model import models
 
 class SweetModelTest(TestCase):
@@ -46,3 +47,33 @@ class SweetModelTest(TestCase):
 
         for sweet in sweets:  #we iterat loop because match sweets is more than one
             self.assertEqual(sweet.category, "chocolate")
+
+    def test_filter_by_price_range(self):
+        models.Sweet.objects.create(name="ChocoBar", category="chocolate", price=100.00, quantity=10)
+        response = self.client.get(reverse("index"), {'min_price': 20, 'max_price': 120})
+        self.assertContains(response, "ChocoBar")
+        self.assertNotContains(response, "rasogulla")
+
+    def test_sort_by_price_desc(self):
+        models.Sweet.objects.create(name="ChocoBar", category="chocolate", price=100.00, quantity=10)
+        models.Sweet.objects.create(name="Coco", category="chocolate", price=10.00, quantity=10)
+        response = self.client.get(reverse('index'), {'sort': 'price_desc'})
+        sweets = list(response.context['sweets'])
+        self.assertEqual(sweets[0].name, "ChocoBar")  # expensive
+        self.assertEqual(sweets[-1].name, "Coco")   # Cheapest
+
+    def test_sort_by_name_asc(self):
+        models.Sweet.objects.create(name="ChocoBar", category="chocolate", price=100.00, quantity=10)
+        models.Sweet.objects.create(name="Coco", category="chocolate", price=10.00, quantity=10)
+        response = self.client.get(reverse('index'), {'sort': 'name_asc'})
+        sweets = list(response.context['sweets'])
+        names = [s.name for s in sweets]
+        self.assertEqual(names, sorted(names))
+
+    def test_sort_by_quantity_desc(self):
+        models.Sweet.objects.create(name="ChocoBar", category="chocolate", price=100.00, quantity=10)
+        models.Sweet.objects.create(name="Coco", category="chocolate", price=10.00, quantity=5)
+        response = self.client.get(reverse('index'), {'sort': 'quantity_desc'})
+        sweets = list(response.context['sweets'])
+        quantities = [s.quantity for s in sweets]
+        self.assertEqual(quantities, sorted(quantities, reverse=True))

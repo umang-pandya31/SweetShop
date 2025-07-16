@@ -3,8 +3,6 @@ from model.models import *
 from django.http import HttpResponse
 from django.db.models import Q
 
-def index(request):
-    from django.db.models import Q
 
 def index(request):
     sweets = Sweet.objects.all()
@@ -21,6 +19,7 @@ def index(request):
     if max_price:
         sweets = sweets.filter(price__lte=max_price)  #__lte is predefine function meand lessthan equal to
 
+    #For Sorting
     return render(request, 'index.html', {'sweets': sweets})
 
     # sweets = Sweet.objects.all()

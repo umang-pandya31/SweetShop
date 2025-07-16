@@ -21,7 +21,7 @@ from SweetShop import views
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    path("",views.index),
+    path("",views.index,name="index"),
     path("add_sweet",views.add_sweet),
     path("delete_sweet/<int:key>", views.delete_sweet, name="delete_sweet"),
     path('update_sweet/<int:pk>/', views.update_sweet, name='update_sweet'),
