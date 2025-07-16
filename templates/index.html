@@ -9,6 +9,50 @@
   position: relative;
   display: inline-block;
 }
+.search-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 30px;
+  justify-content: center;
+}
+
+.search-form input[type="text"],
+.search-form input[type="number"] {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 200px;
+  font-size: 1rem;
+}
+
+.search-form button {
+  background-color: #20c997;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.search-form button:hover {
+  background-color: #198754;
+}
+
+.reset-link {
+  padding: 10px 14px;
+  background-color: #f8f9fa;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 1rem;
+  color: #333;
+}
+
+.reset-link:hover {
+  background-color: #e2e6ea;
+}
 
 .menu-btn {
   background: none;
@@ -156,9 +200,15 @@
 <body>
   <header>
     <h1>Sweet Shop</h1>
-    
     <a href="add_sweet" class="btn-add">+ Add Sweet</a>
-  </header>
+</header>
+<form method="get" class="search-form">
+<input type="text" name="query" placeholder="Search by name or category" value="{{ request.GET.query }}">
+<input type="number" name="min_price" placeholder="Min Price" step="0.01" value="{{ request.GET.min_price }}">
+<input type="number" name="max_price" placeholder="Max Price" step="0.01" value="{{ request.GET.max_price }}">
+<button type="submit">Search</button>
+<a href="/" class="reset-link">Reset</a>
+</form>
 
   <div class="container">
     {% for sweet in sweets %}
