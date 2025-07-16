@@ -20,6 +20,21 @@ def index(request):
         sweets = sweets.filter(price__lte=max_price)  #__lte is predefine function meand lessthan equal to
 
     #For Sorting
+    sort = request.GET.get('sort')
+
+    # Apply sorting based on the selected option
+    if sort == 'name_asc':
+        sweets = sweets.order_by('name')
+    elif sort == 'name_desc':
+        sweets = sweets.order_by('-name')
+    elif sort == 'price_asc':
+        sweets = sweets.order_by('price')
+    elif sort == 'price_desc':
+        sweets = sweets.order_by('-price')
+    elif sort == 'quantity_asc':
+        sweets = sweets.order_by('quantity')
+    elif sort == 'quantity_desc':
+        sweets = sweets.order_by('-quantity')
     return render(request, 'index.html', {'sweets': sweets})
 
     # sweets = Sweet.objects.all()
