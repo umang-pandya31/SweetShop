@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from model.models import *
 from django.http import HttpResponse
 
@@ -16,3 +16,12 @@ def add_sweet(request):
         return redirect("/")
 
     return render(request,"add_sweet.html")
+
+#for delete sweets and direct redirect to home page
+def delete_sweet(request,key):
+    sweet = get_object_or_404(Sweet, id=key)
+    if request.method == 'POST':
+        sweet.delete()
+        return redirect('/')
+    
+    return render(request, 'sweets/confirm_delete.html', {'sweet': sweet})
