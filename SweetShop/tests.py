@@ -23,3 +23,18 @@ class SweetModelTest(TestCase):
         sweet_id = sweet.id
         sweet.delete()
         self.assertFalse(models.Sweet.objects.filter(id=sweet_id).exists())
+
+    def test_update_sweet(self):
+        sweet = models.Sweet.objects.create(
+            name="Cheesecake",
+            category="pastry",
+            price=15.00,
+            quantity=20
+        )
+        sweet.price = 18.00
+        sweet.quantity = 25
+        sweet.save()
+
+        updated = models.Sweet.objects.get(id=sweet.id)
+        self.assertEqual(updated.price, 18.00)
+        self.assertEqual(updated.quantity, 25)

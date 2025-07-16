@@ -1,0 +1,22 @@
+<form method="post">
+  {% csrf_token %}
+
+  <label for="name">Sweet Name</label>
+  <input type="text" name="name" id="name" value="{{ sweet.name|default:'' }}" required>
+
+  <label for="category">Category</label>
+  <select name="category" id="category" required>
+    <option value="">-- Select --</option>
+    <option value="chocolate" {% if sweet.category == "chocolate" %}selected{% endif %}>Chocolate</option>
+    <option value="candy" {% if sweet.category == "candy" %}selected{% endif %}>Candy</option>
+    <option value="pastry" {% if sweet.category == "pastry" %}selected{% endif %}>Pastry</option>
+  </select>
+
+  <label for="price">Price</label>
+  <input type="number" name="price" id="price" step="0.01" value="{{ sweet.price|default:'' }}" required>
+
+  <label for="quantity">Quantity</label>
+  <input type="number" name="quantity" id="quantity" value="{{ sweet.quantity|default:'' }}" required>
+
+  <button type="submit">{% if edit %}Update{% else %}Add{% endif %} Sweet</button>
+</form>

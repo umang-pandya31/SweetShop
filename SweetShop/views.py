@@ -25,3 +25,18 @@ def delete_sweet(request,key):
         return redirect('/')
     
     return render(request, 'sweets/confirm_delete.html', {'sweet': sweet})
+
+
+def update_sweet(request, pk):
+    sweet = get_object_or_404(Sweet, pk=pk)
+
+    if request.method == 'POST':
+        sweet.name = request.POST.get('name')
+        sweet.category = request.POST.get('category')
+        sweet.price = request.POST.get('price')
+        sweet.quantity = request.POST.get('quantity')
+
+        sweet.save()
+        return redirect('/')
+
+    return render(request, 'update_sweet.html', {'sweet': sweet,'edit': True})
