@@ -12,3 +12,14 @@ class SweetModelTest(TestCase):
         )
         self.assertEqual(sweet.name, "Rasgulla") #Check value
         self.assertEqual(sweet.quantity, 50) #Check value
+
+    def test_delete_sweet(self):
+        sweet = models.Sweet.objects.create(
+            name="Lollipop",
+            category="candy",
+            price=2.00,
+            quantity=30
+        )
+        sweet_id = sweet.id
+        sweet.delete()
+        self.assertFalse(models.Sweet.objects.filter(id=sweet_id).exists())

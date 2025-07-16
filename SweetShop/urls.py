@@ -23,5 +23,6 @@ urlpatterns = [
 
     path("",views.index),
     path("add_sweet",views.add_sweet),
+    path("delete_sweet",views.add_sweet),
 
 ]

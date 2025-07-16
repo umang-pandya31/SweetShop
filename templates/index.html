@@ -120,7 +120,7 @@
       <div class="sweet-info">Available: {{ sweet.quantity }}</div>
        <a href="" class="btn btn-update">Edit</a>
       
-        <form action="" method="post" style="display:inline;">
+        <form action="delete_sweet" method="post" style="display:inline;">
           {% csrf_token %}
           <button type="submit" class="btn btn-delete">Delete</button>
         </form>
