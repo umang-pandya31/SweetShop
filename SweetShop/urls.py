@@ -16,7 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from SweetShop import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    path("",views.index),
+    path("add_sweet",views.add_sweet),
+
 ]

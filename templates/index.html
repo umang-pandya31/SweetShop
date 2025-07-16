@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sweet Shop</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #d4fc79, #96e6a1); /* soft mint-green */
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+    h1 {
+      color: #0f5132;
+      font-size: 2rem;
+      margin: 0;
+    }
+    .btn-add {
+      background-color: #20c997; /* teal */
+      color: white;
+      padding: 10px 18px;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+    .btn-add:hover {
+      background-color: #198754;
+    }
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+    .sweet-card {
+      background: #ffffff;
+      border-radius: 14px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      width: 280px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+    .sweet-card:hover {
+      transform: translateY(-5px);
+    }
+    .sweet-name {
+      font-size: 1.6rem;
+      font-weight: bold;
+      color: #198754;
+      margin-bottom: 5px;
+    }
+    .sweet-category {
+      font-size: 1rem;
+      color: #6c757d;
+      margin-bottom: 12px;
+      font-style: italic;
+    }
+    .sweet-info {
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+    .price {
+      color: #ff6b6b;
+      font-weight: 600;
+      font-size: 1.2rem;
+    }
+    .action-buttons {
+      margin-top: 15px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+    .btn {
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .btn-update {
+      background-color: #0dcaf0; /* sky blue */
+      color: white;
+    }
+    .btn-update:hover {
+      background-color: #0aa2c0;
+    }
+    .btn-delete {
+      background-color: #fd7e14; /* coral orange */
+      color: white;
+    }
+    .btn-delete:hover {
+      background-color: #d9480f;
+    }
+    
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Sweet Shop</h1>
+    <a href="add_sweet" class="btn-add">+ Add Sweet</a>
+  </header>
+
+  <div class="container">
+    {% for sweet in sweets %}
+    <div class="sweet-card">
+      <div class="sweet-name">{{ sweet.name }}</div>
+      <div class="sweet-category">{{ sweet.category}}</div>
+      <div class="sweet-info">Price: <span class="price">{{ sweet.price }}</span></div>
+      <div class="sweet-info">Available: {{ sweet.quantity }}</div>
+       <a href="" class="btn btn-update">Edit</a>
+      
+        <form action="" method="post" style="display:inline;">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-delete">Delete</button>
+        </form>
+         
+    </div>
+    {% empty %}
+    <p>No sweets available.</p>
+    {% endfor %}
+  </div>
+</body>
+</html>
