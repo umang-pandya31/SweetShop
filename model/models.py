@@ -16,7 +16,7 @@ class Sweet(models.Model):
         self.quantity -= amount
         self.save()
 
-    #this function help us to increase the amount of stock and we also achive ENCAPSULATION.
+    #this function help us to increase the amount of stock and we also achive ENCAPSULATION .
     def restock(self, amount):
         self.quantity += amount
         self.save()
