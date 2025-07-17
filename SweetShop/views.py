@@ -76,3 +76,17 @@ def update_sweet(request, pk):
 
     return render(request, 'update_sweet.html', {'sweet': sweet,'edit': True})
 
+def purchase_sweet(request):
+    if request.method == "POST":
+        sweet_id = request.POST.get("sweet_id")
+        amount = int(request.POST.get("amount"))
+
+        sweet = get_object_or_404(Sweet, id=sweet_id)
+
+        try:
+            sweet.purchase(amount)
+            messages.success(request, f"Purchased {amount} successfully!")
+        except ValueError as e:
+            messages.error(request, str(e))
+
+    return redirect('/', sweet_id=sweet_id)  # Redirect to some page
