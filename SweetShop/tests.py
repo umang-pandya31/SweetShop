@@ -75,24 +75,24 @@ class SweetModelTest(TestCase):
         names = [s.name for s in sweets]
         self.assertEqual(names, sorted(names))
 
-    # def test_sort_by_quantity_desc(self):
-    #     models.Sweet.objects.create(name="ChocoBar", category="chocolate", price=100.00, quantity=10)
-    #     models.Sweet.objects.create(name="Coco", category="chocolate", price=10.00, quantity=5)
-    #     response = self.client.get(reverse('index'), {'sort': 'quantity_desc'}) #reverse function is use for generate dynamic URL.
-    #     sweets = list(response.context['sweets'])
-    #     quantities = [s.quantity for s in sweets]
-    #     self.assertEqual(quantities, sorted(quantities, reverse=True))
+    def test_sort_by_quantity_desc(self):
+        models.Sweet.objects.create(name="ChocoBar", category="chocolate", price=100.00, quantity=10)
+        models.Sweet.objects.create(name="Coco", category="chocolate", price=10.00, quantity=5)
+        response = self.client.get(reverse('index'), {'sort': 'quantity_desc'}) #reverse function is use for generate dynamic URL.
+        sweets = list(response.context['sweets'])
+        quantities = [s.quantity for s in sweets]
+        self.assertEqual(quantities, sorted(quantities, reverse=True))
 
-    # #this method  is test the purchase mechanism.
-    # def test_purchase(self):
-    #     sweet=models.Sweet.objects.create(name="ChocoBar", category="chocolate", price=100.00, quantity=10)
-    #     sweet.purchase(5)
-    #     self.assertEqual(sweet.quantity,5)
-    #     # sweet.purchase(6)           --> if i uncomment this then error occurd because in first 5 quntity minus then from total 5 is remain and we call method for 6 items.
-    #     # self.assertEqual(sweet.quantity,6)
+    #this method  is test the purchase mechanism.
+    def test_purchase(self):
+        sweet=models.Sweet.objects.create(name="ChocoBar", category="chocolate", price=100.00, quantity=10)
+        sweet.purchase(5)
+        self.assertEqual(sweet.quantity,5)
+        # sweet.purchase(6)           --> if i uncomment this then error occurd because in first 5 quntity minus then from total 5 is remain and we call method for 6 items.
+        # self.assertEqual(sweet.quantity,6)
 
-    # #this test is chek restock is add successfully or not
-    # def test_restock(self):
-    #     sweet=models.Sweet.objects.create(name="ChocoBar", category="chocolate", price=100.00, quantity=10)
-    #     sweet.restock(5)
-    #     self.assertEqual(sweet.quantity,15)
+    #this test is chek restock is add successfully or not
+    def test_restock(self):
+        sweet=models.Sweet.objects.create(name="ChocoBar", category="chocolate", price=100.00, quantity=10)
+        sweet.restock(5)
+        self.assertEqual(sweet.quantity,15)
