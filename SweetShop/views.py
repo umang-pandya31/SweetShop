@@ -41,6 +41,7 @@ def index(request):
     # sweets = Sweet.objects.all()
     # return render(request,"index.html",{'sweets': sweets})
 
+#for add sweet easily get data with post method and with the use of Object save in database.
 def add_sweet(request):
     if request.method == "POST":
         name=request.POST['name']
@@ -52,6 +53,7 @@ def add_sweet(request):
 
     return render(request,"add_sweet.html")
 
+
 #for delete sweets and direct redirect to home page
 def delete_sweet(request,key):
     sweet = get_object_or_404(Sweet, id=key)
@@ -62,6 +64,7 @@ def delete_sweet(request,key):
     return render(request, 'sweets/confirm_delete.html', {'sweet': sweet})
 
 
+# with use of pk variable update the value and then update i database
 def update_sweet(request, pk):
     sweet = get_object_or_404(Sweet, pk=pk)
 
@@ -80,11 +83,11 @@ def purchase_sweet(request):
     if request.method == "POST":
         sweet_id = request.POST.get("sweet_id")
         amount = int(request.POST.get("amount"))
-
-        sweet = get_object_or_404(Sweet, id=sweet_id)
+        #this is very helpfull, if Sweet is found then return this if not then return 404.
+        sweet = get_object_or_404(Sweet, id=sweet_id) 
 
         try:
-            sweet.purchase(amount)
+            sweet.purchase(amount)  #alredy purchase method define in model class so  direct use it.
             messages.success(request, f"Purchased {amount} successfully!")
         except ValueError as e:
             messages.error(request, str(e))
@@ -98,8 +101,7 @@ def add_stock(request):
         sweet = get_object_or_404(Sweet, id=sweet_id)
 
         if amount > 0:
-            sweet.quantity += amount
-            sweet.save()
+            sweet.restock(amount)  # restock method is alredy define in model.
             messages.success(request, f'Added {amount} items to stock of {sweet.name}.')
         else:
             messages.error(request, 'Invalid amount.')

@@ -23,8 +23,8 @@ urlpatterns = [
 
     path("",views.index,name="index"),
     path("add_sweet",views.add_sweet),
-    path("delete_sweet/<int:key>", views.delete_sweet, name="delete_sweet"),
-    path('update_sweet/<int:pk>/', views.update_sweet, name='update_sweet'),
+    path("delete_sweet/<int:key>", views.delete_sweet, name="delete_sweet"), # pass key for get id of sweet with url
+    path('update_sweet/<int:pk>/', views.update_sweet, name='update_sweet'),  # pass pk for get id of sweet with url
     path('purchase_sweet', views.purchase_sweet, name='purchase_sweet'),
     path('add_stock', views.add_stock, name='add_stock'),
 
