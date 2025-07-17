@@ -84,3 +84,8 @@ class SweetModelTest(TestCase):
         self.assertEqual(sweet.quantity,5)
         # sweet.purchase(6)
         # self.assertEqual(sweet.quantity,6)
+
+    def test_restock(self):
+        sweet=models.Sweet.objects.create(name="ChocoBar", category="chocolate", price=100.00, quantity=10)
+        sweet.restock(5)
+        self.assertEqual(sweet.quantity,15)
