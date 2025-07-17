@@ -255,6 +255,19 @@
   background-color: #f8d7da;
   color: #721c24;
 }
+
+#stockModal {
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 25px;
+  border-radius: 8px;
+  z-index: 1000;
+  display: none;
+  min-width: 300px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+}
   </style>
 </head>
 <body>
@@ -297,6 +310,8 @@
       <div class="sweet-category">{{ sweet.category}}</div>
       <div class="sweet-info">Price: <span class="price">{{ sweet.price }}</span></div>
       <div class="sweet-info">Available: {{ sweet.quantity }}</div>
+      <button onclick="openStockModal({{ sweet.id }})" type="button">Add Stock</button>
+
        <button onclick="openPurchaseModal({{ sweet.id }})">Purchase</button>
 
 
@@ -335,6 +350,21 @@
   </form>
 </div>
 
+<!-- ✅ Add Stock Modal -->
+<div id="stockModal" style="display:none;">
+  <form method="POST" action="add_stock">
+    {% csrf_token %}
+    <input type="hidden" name="sweet_id" id="stockSweetIdInput">
+    <label for="stock_amount">Enter stock to add:</label>
+    <input type="number" name="amount" min="1" required>
+    <div class="modal-buttons">
+      <button type="submit">Add</button>
+      <button type="button" onclick="closeStockModal()">Cancel</button>
+    </div>
+  </form>
+</div>
+
+
 </body>
 </html>
 <script>
@@ -366,5 +396,15 @@ function closeModal() {
   document.getElementById('purchaseModal').style.display = 'none';
 }
 
+function openStockModal(sweetId) {
+  document.getElementById('stockSweetIdInput').value = sweetId;
+  document.getElementById('modalOverlay').style.display = 'block';
+  document.getElementById('stockModal').style.display = 'block';
+}
+
+function closeStockModal() {
+  document.getElementById('modalOverlay').style.display = 'none';
+  document.getElementById('stockModal').style.display = 'none';
+}
 
 </script>

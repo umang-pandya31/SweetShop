@@ -89,4 +89,19 @@ def purchase_sweet(request):
         except ValueError as e:
             messages.error(request, str(e))
 
-    return redirect('/', sweet_id=sweet_id)  # Redirect to some page
+    return redirect('/', sweet_id=sweet_id)  # Redirect to home page
+
+def add_stock(request):
+    if request.method == 'POST':
+        sweet_id = request.POST.get('sweet_id')
+        amount = int(request.POST.get('amount', 0))
+        sweet = get_object_or_404(Sweet, id=sweet_id)
+
+        if amount > 0:
+            sweet.quantity += amount
+            sweet.save()
+            messages.success(request, f'Added {amount} items to stock of {sweet.name}.')
+        else:
+            messages.error(request, 'Invalid amount.')
+
+    return redirect('/')  # redirect home page

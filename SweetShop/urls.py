@@ -26,6 +26,8 @@ urlpatterns = [
     path("delete_sweet/<int:key>", views.delete_sweet, name="delete_sweet"),
     path('update_sweet/<int:pk>/', views.update_sweet, name='update_sweet'),
     path('purchase_sweet', views.purchase_sweet, name='purchase_sweet'),
+    path('add_stock', views.add_stock, name='add_stock'),
+
     
 
 ]
