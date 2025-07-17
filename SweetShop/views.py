@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect,get_object_or_404
 from model.models import *
 from django.http import HttpResponse
 from django.db.models import Q
+from django.contrib import messages
 
 
 def index(request):
@@ -74,3 +75,4 @@ def update_sweet(request, pk):
         return redirect('/')
 
     return render(request, 'update_sweet.html', {'sweet': sweet,'edit': True})
+

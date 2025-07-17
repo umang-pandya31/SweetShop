@@ -77,3 +77,10 @@ class SweetModelTest(TestCase):
         sweets = list(response.context['sweets'])
         quantities = [s.quantity for s in sweets]
         self.assertEqual(quantities, sorted(quantities, reverse=True))
+
+    def test_purchase(self):
+        sweet=models.Sweet.objects.create(name="ChocoBar", category="chocolate", price=100.00, quantity=10)
+        sweet.purchase(5)
+        self.assertEqual(sweet.quantity,5)
+        # sweet.purchase(6)
+        # self.assertEqual(sweet.quantity,6)

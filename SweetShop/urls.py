@@ -25,7 +25,7 @@ urlpatterns = [
     path("add_sweet",views.add_sweet),
     path("delete_sweet/<int:key>", views.delete_sweet, name="delete_sweet"),
     path('update_sweet/<int:pk>/', views.update_sweet, name='update_sweet'),
-
+    path('purchase_sweet/', views.purchase_sweet, name='purchase_sweet'),
     
 
 ]

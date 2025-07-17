@@ -234,7 +234,20 @@
       <div class="sweet-category">{{ sweet.category}}</div>
       <div class="sweet-info">Price: <span class="price">{{ sweet.price }}</span></div>
       <div class="sweet-info">Available: {{ sweet.quantity }}</div>
-       
+       <button onclick="openPurchaseModal({{ sweet.id }})">Purchase</button>
+
+<!-- Modal for puchase poo up box  -->
+<div id="purchaseModal" style="display:none;">
+  <form method="POST" action="">
+    {% csrf_token %}
+    <input type="hidden" name="sweet_id" id="sweetIdInput">
+    <label for="amount">Enter amount to purchase:</label>
+    <input type="number" name="amount" min="1" required>
+    <button type="submit">Buy</button>
+    <button type="button" onclick="closeModal()">Cancel</button>
+  </form>
+</div>
+
         <div class="action-menu">
   <button class="menu-btn">⋮</button>
   <div class="menu-dropdown">
@@ -269,4 +282,14 @@
       menu.style.display = 'none';
     });
   });
+
+  function openPurchaseModal(sweetId) {
+    document.getElementById('sweetIdInput').value = sweetId;
+    document.getElementById('purchaseModal').style.display = 'block';
+  }
+
+  function closeModal() {
+    document.getElementById('purchaseModal').style.display = 'none';
+  }
+
 </script>
