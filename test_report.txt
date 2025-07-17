@@ -1,0 +1,151 @@
+Creating test database for alias 'default'...
+
+Found 1 test(s).
+System check identified no issues (0 silenced).
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.002s
+
+OK
+Destroying test database for alias 'default'...
+
+Creating test database for alias 'default'...
+
+Found 2 test(s).
+System check identified no issues (0 silenced).
+..
+----------------------------------------------------------------------
+Ran 2 tests in 0.005s
+
+OK
+Destroying test database for alias 'default'...
+
+Creating test database for alias 'default'...
+
+Found 3 test(s).
+System check identified no issues (0 silenced).
+..F
+======================================================================
+FAIL: test_update_sweet (SweetShop.tests.SweetModelTest.test_update_sweet)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Python\DJango\SweetShop\SweetShop\tests.py", line 41, in test_update_sweet
+    self.assertEqual(updated.price, 1.00)
+AssertionError: Decimal('18.00') != 1.0
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.008s
+
+FAILED (failures=1)
+Destroying test database for alias 'default'...
+
+Creating test database for alias 'default'...
+
+Found 3 test(s).
+System check identified no issues (0 silenced).
+...
+----------------------------------------------------------------------
+Ran 3 tests in 0.007s
+
+OK
+Destroying test database for alias 'default'...
+
+Creating test database for alias 'default'...
+
+Found 4 test(s).
+System check identified no issues (0 silenced).
+....
+----------------------------------------------------------------------
+Ran 4 tests in 0.010s
+
+OK
+Destroying test database for alias 'default'...
+
+Creating test database for alias 'default'...
+
+Found 5 test(s).
+System check identified no issues (0 silenced).
+.....
+----------------------------------------------------------------------
+Ran 5 tests in 0.052s
+
+OK
+Destroying test database for alias 'default'...
+
+Creating test database for alias 'default'...
+
+Found 6 test(s).
+System check identified no issues (0 silenced).
+......
+----------------------------------------------------------------------
+Ran 6 tests in 0.060s
+
+OK
+Destroying test database for alias 'default'...
+
+Creating test database for alias 'default'...
+
+Found 7 test(s).
+System check identified no issues (0 silenced).
+.......
+----------------------------------------------------------------------
+Ran 7 tests in 0.064s
+
+OK
+Destroying test database for alias 'default'...
+
+Creating test database for alias 'default'...
+
+Found 8 test(s).
+System check identified no issues (0 silenced).
+........
+----------------------------------------------------------------------
+Ran 8 tests in 0.067s
+
+OK
+Destroying test database for alias 'default'...
+
+Creating test database for alias 'default'...
+
+Found 9 test(s).
+System check identified no issues (0 silenced).
+...E.....
+======================================================================
+ERROR: test_purchase (SweetShop.tests.SweetModelTest.test_purchase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Python\DJango\SweetShop\SweetShop\tests.py", line 89, in test_purchase
+    sweet.purchase(11)
+  File "D:\Python\DJango\SweetShop\model\models.py", line 15, in purchase
+    raise ValueError("Not enough stock!")
+ValueError: Not enough stock!
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.069s
+
+FAILED (errors=1)
+Destroying test database for alias 'default'...
+
+Creating test database for alias 'default'...
+
+Found 10 test(s).
+System check identified no issues (0 silenced).
+..........
+----------------------------------------------------------------------
+Ran 10 tests in 0.073s
+
+OK
+Destroying test database for alias 'default'...
+
+
+
+Creating test database for alias 'default'...
+
+Found 7 test(s).
+System check identified no issues (0 silenced).
+.......
+----------------------------------------------------------------------
+Ran 7 tests in 0.064s
+
+OK
+Destroying test database for alias 'default'...
